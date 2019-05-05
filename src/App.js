@@ -34,7 +34,7 @@ class App extends Component{
   }
 
   render(){
-    const style = {
+    const style = { 
       backgroundColor: "green",
       font: "inherit",
       border: "1px solid blue",
