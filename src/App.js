@@ -8,7 +8,8 @@ class App extends Component{
       {name: "Max", age:28},
       {name: "Manu", age:29},
       {name: "Stephanie", age:26}
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -22,6 +23,11 @@ class App extends Component{
         ]
     })
   }
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow});
+  }  
 
   nameChangeHandler = (event) => {
     this.setState({
@@ -42,20 +48,46 @@ class App extends Component{
       cursor: "pointer"
     }
 
+    let persons = null;
+    if(this.state.showPersons){
+      persons = (
+        <div>
+          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
+          click={this.switchNameHandler.bind(this, "SB")}
+          change={this.nameChangeHandler}
+          />
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Hobbies: Racing</Person>  */}
+          {this.state.persons.map(person => {
+            return(<Person name={person.name} age={person.age}/>)
+          })
+          }
+        </div>
+      )
+    }
+
    return (
     <div className="App">
       <h1>Hi I am react app</h1>
       <p>This is relly working!</p>
+      {/* <button 
+      style={style} 
+      onClick={()=>this.switchNameHandler("SBBro")}>Switch</button> */}
       <button 
       style={style} 
-      onClick={()=>this.switchNameHandler("SBBro")}>Switch</button>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
-      click={this.switchNameHandler.bind(this, "SB")}
-      change={this.nameChangeHandler}
-      />
-      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Hobbies: Racing</Person>         
-    
+      onClick={this.togglePersonsHandler}>Toggle Persons</button>      
+      {/* {this.state.showPersons === true? 
+        <div>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
+          click={this.switchNameHandler.bind(this, "SB")}
+          change={this.nameChangeHandler}
+          />
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Hobbies: Racing</Person> 
+        </div>
+        :null
+      } */}
+    {persons}
     </div>
   );
   // return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi I am react app!!!'))
