@@ -98,7 +98,7 @@ class App extends Component{
       <h1>Hi I am react app</h1>
       <p>This is relly working!</p>
       {/* <button 
-      style={style} 
+      style={style}   
       onClick={()=>this.switchNameHandler("SBBro")}>Switch</button> */}
       <button 
       style={style} 
